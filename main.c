@@ -45,7 +45,7 @@ void read_input_buffer(InputBuffer *input_buffer)
 }
 void print_prompt(bool admin)
 {
-    printf("[1] Show my information\n[2] Create account\n[3] Login\n[4] Exit\n[5] Admin mode\n\n[%s] > ", admin ? "Admin" : "Client");
+    printf("\033[34m[1] \033[0mShow my information\n\033[34m[2] \033[0mCreate account\n\033[34m[3] \033[0mLogin\n\033[34m[4] \033[0mExit\n\033[34m[5] \033[0mAdmin mode\n\n[\033[32m%s\033[0m] > ", admin ? "Admin" : "Client");
 }
 void close_input_buffer(InputBuffer *input_buffer)
 {
@@ -68,11 +68,7 @@ Account *new_account(const char *name, const char *email, const char *password)
 }
 void show_account(Account *account)
 {
-    printf("             \
-        Account ID: %d\n\
-        Name: %s\n\
-        Email: %s\n\
-        Password: %s\n\n",
+    printf("\033[32mAccount ID: \033[33m%d\033[0m\n\033[32mName: \033[33m%s\033[0m\n\033[32mEmail: \033[33m%s\033[0m\n\033[32mPassword: \033[33m%s\033[0m\n\n",
            account->id,
            account->name,
            account->email,
@@ -213,8 +209,8 @@ void execute_commands(InputBuffer *input_buffer, Account **account_current, bool
         read_input_buffer(input_buffer);
         strcpy(password, input_buffer->buffer);
 
-        close_account(*account_current);
-        *account_current = login_account(email, password);
+        if(login_account(email, password))
+            *account_current = login_account(email, password);
     }
     else if (!strcmp(input_buffer->buffer, "4"))
     {
@@ -252,7 +248,9 @@ int main()
 
     InputBuffer *input_buffer = new_input_buffer();
 
-    Account *account_current = init_account();
+    create_account("Visitante", "visitante@gmail.com", "00000000");
+    Account *account_current = login_account("visitante@gmail.com", "00000000");
+
     create_account("Deuzivan", "deuzivan@gmail.com", "12345678");
     system("clear");
 
@@ -263,6 +261,7 @@ int main()
 
         execute_commands(input_buffer, &(account_current), &running, &admin);
     }
+
 
     close_input_buffer(input_buffer);
     return EXIT_SUCCESS;
