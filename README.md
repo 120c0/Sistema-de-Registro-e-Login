@@ -1,10 +1,10 @@
-// Esse projeto foi feito para estudar lógicas complexas.
-// Executable: 
-//      gcc main.c -o main; ./main
-//      or
-//      make
+#### Esse projeto foi feito para estudar lógicas complexas.
+#### Executable: 
+####      gcc main.c -o main; ./main
+####      or
+####      make
 
-#O que esse projeto inclui:
+####O que esse projeto inclui:
 
 1 - Sistema de tratamento de envio de infromações:
     1 - Tratamento de email
@@ -18,7 +18,7 @@
 4 - Código legível
 
 
-#Comming Feature (Dreams)
+####Comming Feature (Dreams)
 
 1 - Salvar contas em banco de dados criptografado
 2 - Melhoria no sistema de senha criptografada
