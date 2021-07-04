@@ -1,4 +1,4 @@
-## Esse projeto foi feito para estudar lógicas complexas.
+## Esse projeto foi feito para estudar lógicas
 ## Executable: 
 #####      gcc main.c -o main; ./main
 ######      or
